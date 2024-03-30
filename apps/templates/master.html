@@ -45,12 +45,18 @@
                         <ul>
                             <li><a href="#">Shop</a>
                                 <div class="megamenu">
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Women's Collection</li>
-                                        <li><a href="{% url 'shop:category' 1 %}">Dresses</a></li>
-                                       
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
+                                    {% if genders %}
+                                        {% for gender in genders %}
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">{{gender.name}} Collection</li>
+                                                {% for category in gender.categories.all %}
+                                                    <li><a href="{% url 'shop:category' category.slug %}">{{category.name}}</a></li>
+                                                {% endfor %}
+                                            
+                                            </ul>
+                                        {% endfor %}
+
+                                    <!-- <ul class="single-mega cn-col-4">
                                         <li class="title">Men's Collection</li>
                                         <li><a href="{% url 'shop:category' 1 %}">T-Shirts</a></li>
                                        
@@ -59,7 +65,8 @@
                                         <li class="title">Kid's Collection</li>
                                         <li><a href="{% url 'shop:category' 1 %}">Dresses</a></li>
                                       
-                                    </ul>
+                                    </ul> -->
+                                    {% endif %}
                                     <div class="single-mega cn-col-4">
                                         <img src="{% static 'img/bg-img/bg-6.jpg' %}" alt="">
                                     </div>
@@ -263,7 +270,7 @@
                 <div class="col-md-12 text-center">
                     <p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made by <a href="https://frederick-peter-plange.vercel.app" target="_blank">Frederick Peter Plange</a>
     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>
