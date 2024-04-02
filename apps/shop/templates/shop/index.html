@@ -1,4 +1,4 @@
-{% extends 'master.html' %} {% load static %} {% block banner %}
+{% extends 'master.html' %} {% load static %} {% block content %}
 <!-- ##### Welcome Area Start ##### -->
 <section
   class="welcome_area bg-img background-overlay"
@@ -10,56 +10,39 @@
         <div class="hero-content">
           <h6>essence</h6>
           <h2>All products</h2>
-          <a href="#" class="btn essence-btn">view all products</a>
+          <a href="{% url 'shop:all-products' %}" class="btn essence-btn"
+            >view all products</a
+          >
         </div>
       </div>
     </div>
   </div>
 </section>
 <!-- ##### Welcome Area End ##### -->
-{% endblock %} {% block categories %}
+
 <!-- ##### Top Catagory Area Start ##### -->
 <div class="top_catagory_area section-padding-80 clearfix">
   <div class="container">
     <div class="row justify-content-center">
       <!-- Single Catagory -->
+      {% for type in types %}
       <div class="col-12 col-sm-6 col-md-4">
         <div
           class="single_catagory_area d-flex align-items-center justify-content-center bg-img"
-          style="background-image: url('{% static 'img/bg-img/bg-2.jpg' %}')"
+          style="background-image: url({{type.image.url}})"
         >
           <div class="catagory-content">
-            <a href="#">Clothing</a>
+            <a href="{% url 'shop:type-products' type.name|slugify %}">{{type.name}}</a>
           </div>
         </div>
       </div>
-      <!-- Single Catagory -->
-      <div class="col-12 col-sm-6 col-md-4">
-        <div
-          class="single_catagory_area d-flex align-items-center justify-content-center bg-img"
-          style="background-image: url('{% static 'img/bg-img/bg-3.jpg' %}')"
-        >
-          <div class="catagory-content">
-            <a href="#">Shoes</a>
-          </div>
-        </div>
-      </div>
-      <!-- Single Catagory -->
-      <div class="col-12 col-sm-6 col-md-4">
-        <div
-          class="single_catagory_area d-flex align-items-center justify-content-center bg-img"
-          style="background-image: url('{% static 'img/bg-img/bg-4.jpg' %}')"
-        >
-          <div class="catagory-content">
-            <a href="#">Accessories</a>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </div>
 <!-- ##### Top Catagory Area End ##### -->
-{% endblock %} {% block discount_banner %}
+
+{% if discount_rate %}
 <!-- ##### CTA Area Start ##### -->
 <div class="cta-area">
   <div class="container">
@@ -71,9 +54,9 @@
         >
           <div class="h-100 d-flex align-items-center justify-content-end">
             <div class="cta--text">
-              <h6>-60%</h6>
+              <h6>-{{discount_rate}}</h6>
               <h2>Global Sale</h2>
-              <a href="#" class="btn essence-btn">Buy Now</a>
+              <a href="{% url 'shop:all-products' %}" class="btn essence-btn">Buy Now</a>
             </div>
           </div>
         </div>
@@ -82,7 +65,8 @@
   </div>
 </div>
 <!-- ##### CTA Area End ##### -->
-{% endblock %} {% block popular_products %}
+{% endif %}
+
 <!-- ##### New Arrivals Area Start ##### -->
 <section class="new_arrivals_area section-padding-80 clearfix">
   <div class="container">
@@ -254,10 +238,10 @@
   </div>
 </section>
 <!-- ##### New Arrivals Area End ##### -->
-{% endblock %} {% block brands %}
+
 <!-- ##### Brands Area Start ##### -->
 <div class="brands-area d-flex align-items-center justify-content-between">
-  {% if brands %} {% for brand in brands %}
+  {% for brand in brands %}
   <!-- Brand Logo -->
   <div class="single-brands-logo">
     <h1>{{brand.name}}</h1>
@@ -266,7 +250,7 @@
   <!-- <div class="single-brands-logo"> -->
   <h1>No brands added yet</h1>
   <!-- </div> -->
-  {% endfor %} {% endif %}
+  {% endfor %}
 </div>
 <!-- ##### Brands Area End ##### -->
 

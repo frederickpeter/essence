@@ -48,24 +48,13 @@
                                     {% if genders %}
                                         {% for gender in genders %}
                                             <ul class="single-mega cn-col-4">
-                                                <li class="title">{{gender.name}} Collection</li>
+                                                <li class="title">{{gender.name|title}}'s Collection</li>
                                                 {% for category in gender.categories.all %}
-                                                    <li><a href="{% url 'shop:category' category.slug %}">{{category.name}}</a></li>
+                                                    <li><a href="{% url 'shop:category-products' gender.name|iriencode category.slug %}">{{category.name}}</a></li>
                                                 {% endfor %}
                                             
                                             </ul>
                                         {% endfor %}
-
-                                    <!-- <ul class="single-mega cn-col-4">
-                                        <li class="title">Men's Collection</li>
-                                        <li><a href="{% url 'shop:category' 1 %}">T-Shirts</a></li>
-                                       
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Kid's Collection</li>
-                                        <li><a href="{% url 'shop:category' 1 %}">Dresses</a></li>
-                                      
-                                    </ul> -->
                                     {% endif %}
                                     <div class="single-mega cn-col-4">
                                         <img src="{% static 'img/bg-img/bg-6.jpg' %}" alt="">
@@ -189,16 +178,7 @@
     </div>
     <!-- ##### Right Side Cart End ##### -->
 
-    {% block banner %}{% endblock %}
-
-    {% block categories %}{% endblock %}
-
-    {% block discount_banner %}{% endblock %}
-
-    {% block popular_products %}{% endblock %}
-
-    {% block brands %}{% endblock %}
-
+    {% block content %}{% endblock %}
 
 
     <!-- ##### Footer Area Start ##### -->
