@@ -82,6 +82,8 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField()
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    main_image = models.ImageField(upload_to=partial(unique_file_name_generator, base_path="product-images"))
+    secondary_image = models.ImageField(upload_to=partial(unique_file_name_generator, base_path="product-images"), blank=True, null=True)
 
 
     @property

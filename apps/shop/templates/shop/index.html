@@ -32,7 +32,9 @@
           style="background-image: url({{type.image.url}})"
         >
           <div class="catagory-content">
-            <a href="{% url 'shop:type-products' type.name|slugify %}">{{type.name}}</a>
+            <a href="{% url 'shop:type-products' type.name|slugify %}"
+              >{{type.name}}</a
+            >
           </div>
         </div>
       </div>
@@ -56,7 +58,9 @@
             <div class="cta--text">
               <h6>-{{discount_rate}}</h6>
               <h2>Global Sale</h2>
-              <a href="{% url 'shop:all-products' %}" class="btn essence-btn">Buy Now</a>
+              <a href="{% url 'shop:all-products' %}" class="btn essence-btn"
+                >Buy Now</a
+              >
             </div>
           </div>
         </div>
@@ -83,90 +87,32 @@
     <div class="row">
       <div class="col-12">
         <div class="popular-products-slides owl-carousel">
+          {% for product in products %}
           <!-- Single Product -->
           <div class="single-product-wrapper">
             <!-- Product Image -->
             <div class="product-img">
-              <img src="{% static 'img/product-img/product-1.jpg' %}" alt="" />
+              <img src="{{product.main_image.url}}" alt="" />
+              {% if product.secondary_image %}
               <!-- Hover Thumb -->
               <img
                 class="hover-img"
-                src="{% static 'img/product-img/product-2.jpg' %}"
+                src="{{product.secondary_image.url}}"
                 alt=""
               />
-              <!-- Favourite -->
-              <div class="product-favourite">
-                <a href="#" class="favme fa fa-heart"></a>
-              </div>
-            </div>
-            <!-- Product Description -->
-            <div class="product-description">
-              <span>topshop</span>
-              <a href="single-product-details.html">
-                <h6>Knot Front Mini Dress</h6>
-              </a>
-              <p class="product-price">$80.00</p>
+              {% endif %}
 
-              <!-- Hover Content -->
-              <div class="hover-content">
-                <!-- Add to Cart -->
-                <div class="add-to-cart-btn">
-                  <a href="#" class="btn essence-btn">Add to Cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Single Product -->
-          <div class="single-product-wrapper">
-            <!-- Product Image -->
-            <div class="product-img">
-              <img src="{% static 'img/product-img/product-2.jpg' %}" alt="" />
-              <!-- Hover Thumb -->
-              <img
-                class="hover-img"
-                src="{% static 'img/product-img/product-3.jpg' %}"
-                alt=""
-              />
-              <!-- Favourite -->
-              <div class="product-favourite">
-                <a href="#" class="favme fa fa-heart"></a>
-              </div>
-            </div>
-            <!-- Product Description -->
-            <div class="product-description">
-              <span>topshop</span>
-              <a href="single-product-details.html">
-                <h6>Poplin Displaced Wrap Dress</h6>
-              </a>
-              <p class="product-price">$80.00</p>
-
-              <!-- Hover Content -->
-              <div class="hover-content">
-                <!-- Add to Cart -->
-                <div class="add-to-cart-btn">
-                  <a href="#" class="btn essence-btn">Add to Cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Single Product -->
-          <div class="single-product-wrapper">
-            <!-- Product Image -->
-            <div class="product-img">
-              <img src="{% static 'img/product-img/product-3.jpg' %}" alt="" />
-              <!-- Hover Thumb -->
-              <img
-                class="hover-img"
-                src="{% static 'img/product-img/product-4.jpg' %}"
-                alt=""
-              />
-
+              {% if product.discount_rate %}
               <!-- Product Badge -->
               <div class="product-badge offer-badge">
-                <span>-30%</span>
+                <span>-{{product.discount_rate|floatformat:2}}%</span>
               </div>
+              {% endif %}
+
+               <!-- Product Badge -->
+               <!-- <div class="product-badge new-badge">
+                <span>New</span>
+              </div> -->
 
               <!-- Favourite -->
               <div class="product-favourite">
@@ -175,12 +121,15 @@
             </div>
             <!-- Product Description -->
             <div class="product-description">
-              <span>mango</span>
+              <span>{{product.brand}}</span>
               <a href="single-product-details.html">
-                <h6>PETITE Crepe Wrap Mini Dress</h6>
+                <h6>{{product.name}}</h6>
               </a>
               <p class="product-price">
-                <span class="old-price">$75.00</span> $55.00
+                {% if product.base_price != product.discounted_price %}
+                <span class="old-price">${{product.base_price|floatformat:2}}</span>
+                ${{product.discounted_price|floatformat:2}} {% else %} ${{product.base_price|floatformat:2}}
+                {% endif %}
               </p>
 
               <!-- Hover Content -->
@@ -193,45 +142,10 @@
             </div>
           </div>
 
-          <!-- Single Product -->
-          <div class="single-product-wrapper">
-            <!-- Product Image -->
-            <div class="product-img">
-              <img src="{% static 'img/product-img/product-4.jpg' %}" alt="" />
-              <!-- Hover Thumb -->
-              <img
-                class="hover-img"
-                src="{% static 'img/product-img/product-5.jpg' %}"
-                alt=""
-              />
+          {% empty %}
+          <p>No products</p>
+          {% endfor %}
 
-              <!-- Product Badge -->
-              <div class="product-badge new-badge">
-                <span>New</span>
-              </div>
-
-              <!-- Favourite -->
-              <div class="product-favourite">
-                <a href="#" class="favme fa fa-heart"></a>
-              </div>
-            </div>
-            <!-- Product Description -->
-            <div class="product-description">
-              <span>mango</span>
-              <a href="single-product-details.html">
-                <h6>PETITE Belted Jumper Dress</h6>
-              </a>
-              <p class="product-price">$80.00</p>
-
-              <!-- Hover Content -->
-              <div class="hover-content">
-                <!-- Add to Cart -->
-                <div class="add-to-cart-btn">
-                  <a href="#" class="btn essence-btn">Add to Cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -63,7 +63,7 @@
                             </li>
                            
                             <li><a href="{% url 'shop:blogs' %}">Blog</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="{% url 'shop:contact-us' %}">Contact</a></li>
                         </ul>
                     </div>
                     <!-- Nav End -->
@@ -190,14 +190,14 @@
                     <div class="single_widget_area d-flex mb-30">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="#"><img src="{% static 'img/core-img/logo2.png' %}" alt=""></a>
+                            <a href="{% url 'shop:index' %}"><img src="{% static 'img/core-img/logo2.png' %}" alt=""></a>
                         </div>
                         <!-- Footer Menu -->
                         <div class="footer_menu">
                             <ul>
-                                <li><a href="shop.html">Shop</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="{% url 'shop:all-products' %}">Shop</a></li>
+                                <li><a href="{% url 'shop:blogs' %}">Blog</a></li>
+                                <li><a href="{% url 'shop:contact-us' %}">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -250,7 +250,7 @@
                 <div class="col-md-12 text-center">
                     <p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made by <a href="https://frederick-peter-plange.vercel.app" target="_blank">Frederick Peter Plange</a>
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made by <a style="color: white; font-size: large;" href="https://frederick-peter-plange.vercel.app" target="_blank">Frederick Peter Plange</a>
     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>
