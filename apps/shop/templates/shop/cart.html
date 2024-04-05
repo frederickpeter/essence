@@ -1,0 +1,104 @@
+{% extends 'master.html' %} {% load static %} {% block content %}
+
+<!-- ##### Breadcumb Area Start ##### -->
+<div
+  class="breadcumb_area bg-img"
+  style="background-image: url('{% static 'img/bg-img/breadcumb.jpg' %}')"
+>
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12">
+        <div class="page-title text-center">
+          <h2>My Cart</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+
+<!-- ##### Blog Wrapper Area Start ##### -->
+<section class="h-100" style="background-color: #eee">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-10">
+        <div class="card rounded-3 mb-4">
+          <div class="card-body p-4">
+            <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-md-2 col-lg-2 col-xl-2">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                  class="img-fluid rounded-3"
+                  alt="Cotton T-shirt"
+                />
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-3">
+                <p class="lead fw-normal mb-2">Basic T-shirt</p>
+                <p>
+                  <span class="text-muted">Size: </span>M
+                  <span class="text-muted">Color: </span>Grey
+                </p>
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                <button
+                  class="btn btn-link px-2"
+                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                ></button>
+
+                <input
+                  id="form1"
+                  min="0"
+                  name="quantity"
+                  value="2"
+                  type="number"
+                  class="form-control form-control-sm"
+                />
+
+                <button
+                  class="btn btn-link px-2"
+                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                ></button>
+              </div>
+              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                <h5 class="mb-0">Unit Price: ¢499.00</h5>
+              </div>
+              <div class="col-md-2 col-lg-1 col-xl-2 text-end">
+                <a href="#!" class="text-danger">Remove</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body p-4 d-flex flex-row">
+            <!-- <button type="button" class="btn btn-outline-warning btn-lg ms-3">
+              Calculate Total
+            </button> -->
+
+            <div class="cart-amount-summary">
+              <h2>Summary</h2>
+              <ul class="summary-table">
+                <li><span>subtotal:</span> <span>$274.00</span></li>
+                <li><span>delivery:</span> <span>Free</span></li>
+                <li><span>discount:</span> <span>-15%</span></li>
+                <li><span>total:</span> <span>$232.00</span></li>
+              </ul>
+              <button class="btn">Refresh</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <button type="button" class="btn essence-btn btn-block btn-lg">
+              Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ##### Blog Wrapper Area End ##### -->
+
+{% endblock %}
